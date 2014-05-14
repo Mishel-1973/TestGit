@@ -10,12 +10,14 @@ namespace QFC.EasyNetQ
 	public class EasyNetQReceiver : IQueueReceiver<PocoClass>, IDisposable
 	{
 		private readonly IBus _bus;
+		private readonly string _subscriberId;
 		private readonly ConcurrentQueue<PocoClass> _data;
 		private static EasyNetQReceiver _instance;
 		private const string EasyQSubscriptionID = "QFS_testing";
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
+			_subscriberId = cfg.SubscriberId;
 			_data = new ConcurrentQueue<PocoClass>();
 			_bus = RabbitHutch.CreateBus(cfg.HostUrl);
 		}
@@ -27,7 +29,7 @@ namespace QFC.EasyNetQ
 
 		public void Subscribe()
 		{
-			_bus.Subscribe<PocoClass>(EasyQSubscriptionID, HandleMessage);
+			_bus.Subscribe<PocoClass>(_subscriberId, HandleMessage);
 		}
 
 		public ConcurrentQueue<PocoClass> ReceivedData
