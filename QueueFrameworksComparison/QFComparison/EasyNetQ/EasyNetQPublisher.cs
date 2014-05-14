@@ -1,19 +1,19 @@
-﻿using EasyNetQ;
+﻿using System;
+using EasyNetQ;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.Contracts.Interfaces;
 
 namespace QFC.EasyNetQ
 {
-	public class EasyNetQPublisher : IQueuePublisher<PocoClass>
+	public class EasyNetQPublisher : IQueuePublisher<PocoClass>, IDisposable
 	{
+		private readonly IBus _bus;
 		private static EasyNetQPublisher _instance;
-
-		private readonly QueueConfig _config;
 
 		private EasyNetQPublisher(QueueConfig cfg)
 		{
-			_config = cfg;
+			_bus = RabbitHutch.CreateBus(cfg.HostUrl);
 		}
 
 		public static EasyNetQPublisher GetInstance(QueueConfig config)
@@ -23,17 +23,13 @@ namespace QFC.EasyNetQ
 
 		public void Publish(PocoClass message)
 		{
-			using (var bus = RabbitHutch.CreateBus(_config.HostUrl))
-			{
-				bus.Publish( message );
-			}
+			this._bus.Publish( message );
 		}
 
-		public static void StaticPublish(PocoClass message)
+		public void Dispose()
 		{
-			GetInstance(null).Publish(message);
+			_bus.Dispose();
+			_instance = null;
 		}
-
-
 	}
 }
