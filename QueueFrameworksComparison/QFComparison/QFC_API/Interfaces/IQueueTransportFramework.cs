@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QFC_API.Interfaces
+﻿namespace QFC.Contracts.Interfaces
 {
-	interface IQueueTransportFramework
+    interface IQueueTransportFramework<TPoco> where TPoco : class
 	{
-
+        bool Publish(TPoco message);
 	}
 }
