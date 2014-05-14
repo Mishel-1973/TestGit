@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EasyNetQ;
+﻿using EasyNetQ;
+using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.Contracts.Interfaces;
 
@@ -11,10 +7,23 @@ namespace QFC.EasyNetQ
 {
 	public class EasyNetQPublisher : IQueuePublisher<PocoClass>
 	{
-		public const string HostPath = "host=localhost";
+		private EasyNetQPublisher _instance;
+
+		private readonly QueueConfig _config;
+
+		private EasyNetQPublisher(QueueConfig cfg)
+		{
+			_config = cfg;
+		}
+
+		public EasyNetQPublisher GetInstance(QueueConfig config)
+		{
+			return _instance ?? (_instance = new EasyNetQPublisher(config));
+		}
+
 		public void Publish(PocoClass message)
 		{
-			using (var bus = RabbitHutch.CreateBus(HostPath))
+			using (var bus = RabbitHutch.CreateBus(_config.HostUrl))
 			{
 				bus.Publish( message );
 			}
