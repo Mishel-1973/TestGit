@@ -1,6 +1,6 @@
 ﻿namespace QFC.Contracts.Interfaces
 {
-    interface IQueueTransportFramework<TPoco> where TPoco : class
+    public interface IQueueTransportFramework<TPoco> where TPoco : class
 	{
         bool Publish(TPoco message);
 	}
