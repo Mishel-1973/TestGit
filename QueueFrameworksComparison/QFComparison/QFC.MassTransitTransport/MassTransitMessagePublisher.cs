@@ -1,17 +1,15 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using MassTransit;
+﻿using MassTransit;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.Contracts.Interfaces;
 
 namespace QFC.MassTransitTransport
 {
-    public class MassTransitMessageTransmiter : IQueuePublisher<PocoClass>
+    public class MassTransitMessagePublisher : IQueuePublisher<PocoClass>
     {
-        private MassTransitMessageTransmiter _instance;
+        private MassTransitMessagePublisher _instance;
 
-        private MassTransitMessageTransmiter(QueueConfig config)
+        private MassTransitMessagePublisher(QueueConfig config)
         {
             Bus.Initialize(cfg  =>
             {
@@ -20,9 +18,9 @@ namespace QFC.MassTransitTransport
             });
         }
 
-        public MassTransitMessageTransmiter GetInstance(QueueConfig config)
+        public MassTransitMessagePublisher GetInstance(QueueConfig config)
         {
-            return _instance ?? (_instance = new MassTransitMessageTransmiter(config));
+            return _instance ?? (_instance = new MassTransitMessagePublisher(config));
         }
 
         public void Publish(PocoClass message)
