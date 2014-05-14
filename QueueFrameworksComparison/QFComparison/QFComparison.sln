@@ -6,7 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.TestProject", "QFC.TestProject\QFC.TestProject.csproj", "{948D7592-2438-4882-BF7D-957EF5D75E21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.EasyNetQ", "EasyNetQ\QFC.EasyNetQ.csproj", "{BDE819C2-22A9-43EF-9820-A917042F6F06}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.MassTransitTransport", "QFC.MassTransitTransport\QFC.MassTransitTransport.csproj", "{84591ED2-1D2A-411E-A453-CD4688BDC88B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +25,6 @@ Global
 		{BDE819C2-22A9-43EF-9820-A917042F6F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDE819C2-22A9-43EF-9820-A917042F6F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDE819C2-22A9-43EF-9820-A917042F6F06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84591ED2-1D2A-411E-A453-CD4688BDC88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84591ED2-1D2A-411E-A453-CD4688BDC88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84591ED2-1D2A-411E-A453-CD4688BDC88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84591ED2-1D2A-411E-A453-CD4688BDC88B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

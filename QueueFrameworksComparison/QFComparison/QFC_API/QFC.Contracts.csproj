@@ -48,7 +48,7 @@
     <Compile Include="Configuration\QueueConfig.cs" />
     <Compile Include="Data\ComplexType.cs" />
     <Compile Include="Interfaces\IQueueReceiver.cs" />
-    <Compile Include="Interfaces\IQueueTransportFramework.cs" />
+    <Compile Include="Interfaces\IQueuePublisher.cs" />
     <Compile Include="Data\PocoClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -9,16 +9,15 @@ using QFC.Contracts.Interfaces;
 
 namespace QFC.EasyNetQ
 {
-	public class EasyNetQTransport : IQueueTransportFramework<PocoClass>
+	public class EasyNetQPublisher : IQueuePublisher<PocoClass>
 	{
 		public const string HostPath = "host=localhost";
-		public bool Publish(PocoClass message)
+		public void Publish(PocoClass message)
 		{
 			using (var bus = RabbitHutch.CreateBus(HostPath))
 			{
 				bus.Publish( message );
 			}
-			return true;
 		}
 	}
 }

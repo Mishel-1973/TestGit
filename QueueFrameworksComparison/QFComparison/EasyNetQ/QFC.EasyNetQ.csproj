@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EasyNetQTransport.cs" />
+    <Compile Include="EasyNetQPublisher.cs" />
+    <Compile Include="EasyNetQReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
