@@ -4,7 +4,7 @@ namespace QFC.Contracts.Interfaces
 {
 	public interface IQueueReceiver<TPoco> where TPoco : class
 	{
-		void Subscribe(string connectionString);
+		void Subscribe();
 		ConcurrentQueue<TPoco> ReceivedData { get; }
 	}
 }
