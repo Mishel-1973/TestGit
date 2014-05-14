@@ -33,6 +33,7 @@ namespace QFC.MassTransitTransport
         public void Dispose()
         {
             _bus.Dispose();
+            _instance = null;
         }
     }
 }
