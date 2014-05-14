@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MassTransit;
 
 namespace QFC.Contracts.Data
 {
