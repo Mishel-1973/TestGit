@@ -7,7 +7,7 @@ namespace QFC.EasyNetQ
 {
 	public class EasyNetQPublisher : IQueuePublisher<PocoClass>
 	{
-		private EasyNetQPublisher _instance;
+		private static EasyNetQPublisher _instance;
 
 		private readonly QueueConfig _config;
 
@@ -16,7 +16,7 @@ namespace QFC.EasyNetQ
 			_config = cfg;
 		}
 
-		public EasyNetQPublisher GetInstance(QueueConfig config)
+		public static EasyNetQPublisher GetInstance(QueueConfig config)
 		{
 			return _instance ?? (_instance = new EasyNetQPublisher(config));
 		}
@@ -28,5 +28,12 @@ namespace QFC.EasyNetQ
 				bus.Publish( message );
 			}
 		}
+
+		public static void StaticPublish(PocoClass message)
+		{
+			GetInstance(null).Publish(message);
+		}
+
+
 	}
 }
