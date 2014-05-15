@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
 using MassTransit;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
@@ -12,6 +14,8 @@ namespace QFC.MassTransitTransport
 {
     public class MassTransitMessageReciever : IQueueReceiver<PocoClass>, IDisposable
     {
+        public static List<PocoClass> MessageRecieved = new List<PocoClass>();
+ 
         private readonly IServiceBus _bus;
         private readonly ConcurrentQueue<PocoClass> _data;
         private readonly ILoger<PocoClass> _loger;
@@ -31,7 +35,10 @@ namespace QFC.MassTransitTransport
             {
                 cfg.UseRabbitMq();
                 cfg.ReceiveFrom(config.HostUrl);
+                cfg.UseRabbitMqRouting();
             });
+
+            _bus.SubscribeConsumer<MessageConsumer>();
         }
 
         public static MassTransitMessageReciever GetInstance(QueueConfig config)
@@ -48,8 +55,9 @@ namespace QFC.MassTransitTransport
         {
             this._bus.SubscribeHandler<PocoClass>(msg =>
             {
-                _loger.LogData(msg);
-                _data.Enqueue(msg);
+                /*Debug.WriteLine("Handling....");
+                //_loger.LogData(msg);
+                _data.Enqueue(msg);*/
             });
         }
 

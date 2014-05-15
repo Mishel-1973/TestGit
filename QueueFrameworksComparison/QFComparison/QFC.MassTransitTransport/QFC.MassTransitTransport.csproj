@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="MassTransitMessagePublisher.cs" />
     <Compile Include="MassTransitMessageReciever.cs" />
+    <Compile Include="MessageConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
