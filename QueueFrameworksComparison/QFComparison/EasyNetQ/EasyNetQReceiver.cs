@@ -13,7 +13,6 @@ namespace QFC.EasyNetQ
 		private readonly string _subscriberId;
 		private readonly ConcurrentQueue<PocoClass> _data;
 		private static EasyNetQReceiver _instance;
-		private const string EasyQSubscriptionID = "QFS_testing";
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
