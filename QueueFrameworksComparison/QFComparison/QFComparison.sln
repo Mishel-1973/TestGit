@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.ServiceStackTransport",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.Utilities", "QFC.Utilities\QFC.Utilities.csproj", "{5A404128-AF44-4095-AEE7-6577D28338D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestReceiverApplication", "TestReceiverApplication\TestReceiverApplication.csproj", "{8867FFFE-EC54-44C2-AE02-851358621A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPublisherApplication", "TestConsoleApplication\TestPublisherApplication.csproj", "{3DCD1393-7E97-41E8-9ED5-1967D34729C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{5A404128-AF44-4095-AEE7-6577D28338D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A404128-AF44-4095-AEE7-6577D28338D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A404128-AF44-4095-AEE7-6577D28338D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8867FFFE-EC54-44C2-AE02-851358621A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8867FFFE-EC54-44C2-AE02-851358621A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8867FFFE-EC54-44C2-AE02-851358621A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8867FFFE-EC54-44C2-AE02-851358621A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

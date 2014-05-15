@@ -29,7 +29,6 @@ namespace QFC.ServiceStackTransport
             _loger = new JsonLoger<PocoClass>(logConfig);
             _data = new ConcurrentQueue<PocoClass>();
             _server = new RabbitMqServer(config.HostUrl);
-            _server.Start();
         }
 
         public static ServiceStackMessageReciever GetInstance(QueueConfig config)
@@ -45,7 +44,8 @@ namespace QFC.ServiceStackTransport
                 ReceivedData.Enqueue(m.GetBody());
                 return null;
             });
-        }
+			_server.Start();
+		}
 
         public ConcurrentQueue<PocoClass> ReceivedData
         {
