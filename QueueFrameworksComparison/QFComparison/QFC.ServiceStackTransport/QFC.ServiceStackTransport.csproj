@@ -77,6 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\QFC.Utilities\QFC.Utilities.csproj">
+      <Project>{5A404128-AF44-4095-AEE7-6577D28338D2}</Project>
+      <Name>QFC.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QFC_API\QFC.Contracts.csproj">
       <Project>{1ED649CF-CDEC-4C94-AF83-2DE55868C4EC}</Project>
       <Name>QFC.Contracts</Name>

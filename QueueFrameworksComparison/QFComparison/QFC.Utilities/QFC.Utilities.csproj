@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84591ED2-1D2A-411E-A453-CD4688BDC88B}</ProjectGuid>
+    <ProjectGuid>{5A404128-AF44-4095-AEE7-6577D28338D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QFC.MassTransitTransport</RootNamespace>
-    <AssemblyName>QFC.MassTransitTransport</AssemblyName>
+    <RootNamespace>QFC.Utilities</RootNamespace>
+    <AssemblyName>QFC.Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,20 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Magnum">
-      <HintPath>..\packages\Magnum.2.1.2\lib\NET40\Magnum.dll</HintPath>
-    </Reference>
-    <Reference Include="MassTransit">
-      <HintPath>..\packages\MassTransit.2.9.5\lib\net40\MassTransit.dll</HintPath>
-    </Reference>
-    <Reference Include="MassTransit.Transports.RabbitMq">
-      <HintPath>..\packages\MassTransit.RabbitMQ.2.9.5\lib\net40\MassTransit.Transports.RabbitMq.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RabbitMQ.Client">
-      <HintPath>..\packages\RabbitMQ.Client.3.2.4\lib\net30\RabbitMQ.Client.dll</HintPath>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,22 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MassTransitMessagePublisher.cs" />
-    <Compile Include="MassTransitMessageReciever.cs" />
+    <Compile Include="Log\ConfigurationSettings\LogConfig.cs" />
+    <Compile Include="Log\Contracts\ILoger.cs" />
+    <Compile Include="Log\Enums\LoggingFormats.cs" />
+    <Compile Include="Log\Logers\JsonLoger.cs" />
+    <Compile Include="Log\Logers\XmlLoger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QFC.Utilities\QFC.Utilities.csproj">
-      <Project>{5A404128-AF44-4095-AEE7-6577D28338D2}</Project>
-      <Name>QFC.Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QFC_API\QFC.Contracts.csproj">
-      <Project>{1ed649cf-cdec-4c94-af83-2de55868c4ec}</Project>
-      <Name>QFC.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

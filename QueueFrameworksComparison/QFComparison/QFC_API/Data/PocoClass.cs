@@ -4,7 +4,7 @@ using MassTransit;
 
 namespace QFC.Contracts.Data
 {
-	public class PocoClass : IConsumer
+	public class PocoClass  : IConsumer
 	{
 		public string Description { get; set; }
 		public int Id { get; set; }

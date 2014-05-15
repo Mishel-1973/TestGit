@@ -4,6 +4,9 @@ using EasyNetQ;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.Contracts.Interfaces;
+using QFC.Utilities.Log.ConfigurationSettings;
+using QFC.Utilities.Log.Contracts;
+using QFC.Utilities.Log.Logers;
 
 namespace QFC.EasyNetQ
 {
@@ -12,10 +15,24 @@ namespace QFC.EasyNetQ
 		private readonly IBus _bus;
 		private readonly string _subscriberId;
 		private readonly ConcurrentQueue<PocoClass> _data;
+<<<<<<< HEAD
 		private static EasyNetQReceiver _instance;
+=======
+        private readonly ILoger<PocoClass> _loger;
+        private static EasyNetQReceiver _instance;
+		private const string EasyQSubscriptionID = "QFS_testing";
+>>>>>>> a56d177ae7807f81f085c72208927ef8825fafef
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
+            var logConfig = new LogConfig
+            {
+                IsAppend = true,
+                SourceFilePath = cfg.LogFilePath
+            };
+
+            _loger = new JsonLoger<PocoClass>(logConfig);
+
 			_subscriberId = cfg.SubscriberId;
 			_data = new ConcurrentQueue<PocoClass>();
 			_bus = RabbitHutch.CreateBus(cfg.HostUrl);
@@ -41,6 +58,7 @@ namespace QFC.EasyNetQ
 
 		protected void HandleMessage(PocoClass message)
 		{
+            _loger.LogData(message);
 			_data.Enqueue(message);
 		}
 

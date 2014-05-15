@@ -56,6 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\QFC.Utilities\QFC.Utilities.csproj">
+      <Project>{5a404128-af44-4095-aee7-6577d28338d2}</Project>
+      <Name>QFC.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QFC_API\QFC.Contracts.csproj">
       <Project>{1ed649cf-cdec-4c94-af83-2de55868c4ec}</Project>
       <Name>QFC.Contracts</Name>
