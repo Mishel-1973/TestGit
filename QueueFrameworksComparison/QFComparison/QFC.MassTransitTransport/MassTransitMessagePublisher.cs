@@ -16,6 +16,7 @@ namespace QFC.MassTransitTransport
             this._bus = ServiceBusFactory.New(cfg  =>
             {
                 cfg.UseRabbitMq();
+                cfg.UseRabbitMqRouting();
                 // Publish and receive use the same setting method (ReceiveFrom)
                 cfg.ReceiveFrom(config.HostUrl);
             });

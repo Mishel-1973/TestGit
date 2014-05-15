@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
@@ -104,34 +105,32 @@ namespace QFC.TestProject
             const int messageCount = 100;
             var timer = new Stopwatch();
 
-            using (var publisher = MassTransitMessagePublisher.GetInstance(_configMassTransit))
-            {
-                timer.Start();
-
-                for (int i = 0; i < messageCount; i++)
-                {
-                    publisher.Publish(_sentObject);
-                }
-
-                timer.Stop();
-                Debug.Write(string.Format("Elapsed time {0} message sent: {1} \n", messageCount, timer.ElapsedMilliseconds));
-                timer.Reset();
-            }
-
             using (var subscriber = MassTransitMessageReciever.GetInstance(_configMassTransit))
             {
+                using (var publisher = MassTransitMessagePublisher.GetInstance(_configMassTransit))
+                {
+                    timer.Start();
+
+                    for (int i = 0; i < messageCount; i++)
+                    {
+                        publisher.Publish(_sentObject);
+                    }
+
+                    timer.Stop();
+                    Debug.Write(string.Format("Elapsed time {0} message sent: {1} \n", messageCount, timer.ElapsedMilliseconds));
+                    timer.Reset();
+                }
+
                 timer.Start();
                 subscriber.Subscribe();
-                while (subscriber.ReceivedData.Count < messageCount)
+                while (MassTransitMessageReciever.MessageRecieved.Count < messageCount)
                 {
                 }
 
-                var recievedData = new List<PocoClass>();
-                while (subscriber.ReceivedData.Count != 0)
+                while (MassTransitMessageReciever.MessageRecieved.Count != 0)
                 {
-                    PocoClass tepmoraryObject;
-                    subscriber.ReceivedData.TryDequeue(out tepmoraryObject);
-                    recievedData.Add(tepmoraryObject);
+                    PocoClass tepmoraryObject = MassTransitMessageReciever.MessageRecieved.First();
+                    MassTransitMessageReciever.MessageRecieved.Remove(tepmoraryObject);
                 }
 
                 timer.Stop();
