@@ -13,6 +13,7 @@ namespace QFC.EasyNetQ
 	public class EasyNetQReceiver : IQueueReceiver<PocoClass>, IDisposable
 	{
 		private readonly IBus _bus;
+		private readonly string _subscriberId;
 		private readonly ConcurrentQueue<PocoClass> _data;
         private readonly ILoger<PocoClass> _loger;
         private static EasyNetQReceiver _instance;
@@ -20,6 +21,7 @@ namespace QFC.EasyNetQ
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
+<<<<<<< HEAD
             var logConfig = new LogConfig
             {
                 IsAppend = true,
@@ -28,6 +30,9 @@ namespace QFC.EasyNetQ
 
             _loger = new JsonLoger<PocoClass>(logConfig);
 
+=======
+			_subscriberId = cfg.SubscriberId;
+>>>>>>> d9143608fbef433e2922c48bd88139b406155df7
 			_data = new ConcurrentQueue<PocoClass>();
 			_bus = RabbitHutch.CreateBus(cfg.HostUrl);
 		}
@@ -39,7 +44,7 @@ namespace QFC.EasyNetQ
 
 		public void Subscribe()
 		{
-			_bus.Subscribe<PocoClass>(EasyQSubscriptionID, HandleMessage);
+			_bus.Subscribe<PocoClass>(_subscriberId, HandleMessage);
 		}
 
 		public ConcurrentQueue<PocoClass> ReceivedData
