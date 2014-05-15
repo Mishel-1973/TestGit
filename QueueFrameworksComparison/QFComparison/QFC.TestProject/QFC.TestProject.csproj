@@ -63,6 +63,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EasyNetQ\QFC.EasyNetQ.csproj">
+      <Project>{bde819c2-22a9-43ef-9820-a917042f6f06}</Project>
+      <Name>QFC.EasyNetQ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QFC_API\QFC.Contracts.csproj">
       <Project>{1ed649cf-cdec-4c94-af83-2de55868c4ec}</Project>
       <Name>QFC.Contracts</Name>

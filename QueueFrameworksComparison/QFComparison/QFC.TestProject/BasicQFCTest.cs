@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Timers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
+using QFC.EasyNetQ;
 
 namespace QFC.TestProject
 {
@@ -32,9 +36,22 @@ namespace QFC.TestProject
 			Houses = new Dictionary<int, DateTime>(new Dictionary<int, DateTime> {{1, DateTime.Now}, {3, DateTime.Now}})
 		};
 
-		[TestMethod]
-		public void SendMessage()
+		private QueueConfig _config = new QueueConfig
 		{
+			HostUrl = "Host=localhost",
+			LogFilePath = "E:\\Logs\\EasyNetQ",
+			SubscriberId = "QFC_perfomance_tests"
+		};
+
+		[TestMethod]
+		public void SendMessagesViaEasyNetQ()
+		{
+			var publisher = EasyNetQPublisher.GetInstance(_config);
+			var timer = new Timer();
+			timer.Start();
+			publisher.Publish(_sentObject);
+			timer.Stop();
+			Debug.Write("Elapsed time 1 message " + timer.Interval);
 		}
 	}
 }
