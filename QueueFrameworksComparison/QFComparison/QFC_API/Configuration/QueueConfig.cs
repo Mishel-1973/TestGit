@@ -6,5 +6,10 @@
         /// Gets or sets message queue host url.
         /// </summary>
         public string HostUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets path to log file.
+        /// </summary>
+        public string LogFilePath { get; set; }
     }
 }
