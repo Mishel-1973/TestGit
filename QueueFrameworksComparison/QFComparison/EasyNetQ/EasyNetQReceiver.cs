@@ -16,7 +16,7 @@ namespace QFC.EasyNetQ
 		private readonly string _subscriberId;
 		private readonly ConcurrentQueue<PocoClass> _data;
         private readonly ILoger<PocoClass> _loger;
-		private static EasyNetQReceiver _instance;
+        private static EasyNetQReceiver _instance;
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
