@@ -44,6 +44,10 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.3.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RabbitMQ.Client.3.2.4\lib\net30\RabbitMQ.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -66,6 +70,14 @@
     <ProjectReference Include="..\EasyNetQ\QFC.EasyNetQ.csproj">
       <Project>{bde819c2-22a9-43ef-9820-a917042f6f06}</Project>
       <Name>QFC.EasyNetQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QFC.MassTransitTransport\QFC.MassTransitTransport.csproj">
+      <Project>{84591ed2-1d2a-411e-a453-cd4688bdc88b}</Project>
+      <Name>QFC.MassTransitTransport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QFC.ServiceStackTransport\QFC.ServiceStackTransport.csproj">
+      <Project>{92bd816f-27bd-419a-9ec6-421661307607}</Project>
+      <Name>QFC.ServiceStackTransport</Name>
     </ProjectReference>
     <ProjectReference Include="..\QFC_API\QFC.Contracts.csproj">
       <Project>{1ed649cf-cdec-4c94-af83-2de55868c4ec}</Project>
