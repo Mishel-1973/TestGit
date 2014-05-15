@@ -21,7 +21,6 @@ namespace QFC.EasyNetQ
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
-<<<<<<< HEAD
             var logConfig = new LogConfig
             {
                 IsAppend = true,
@@ -30,9 +29,7 @@ namespace QFC.EasyNetQ
 
             _loger = new JsonLoger<PocoClass>(logConfig);
 
-=======
 			_subscriberId = cfg.SubscriberId;
->>>>>>> d9143608fbef433e2922c48bd88139b406155df7
 			_data = new ConcurrentQueue<PocoClass>();
 			_bus = RabbitHutch.CreateBus(cfg.HostUrl);
 		}
