@@ -59,7 +59,7 @@ namespace QFC.TestProject
 		[TestMethod]
 		public void SendMessagesViaEasyNetQ()
 		{
-            const int messageCount = 10000;
+            const int messageCount = 10;
             var timer = new Stopwatch();
 
 		    using (var publisher = EasyNetQPublisher.GetInstance(_config))
