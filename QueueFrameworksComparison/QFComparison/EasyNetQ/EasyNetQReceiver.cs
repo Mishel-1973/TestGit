@@ -15,13 +15,8 @@ namespace QFC.EasyNetQ
 		private readonly IBus _bus;
 		private readonly string _subscriberId;
 		private readonly ConcurrentQueue<PocoClass> _data;
-<<<<<<< HEAD
-		private static EasyNetQReceiver _instance;
-=======
         private readonly ILoger<PocoClass> _loger;
         private static EasyNetQReceiver _instance;
-		private const string EasyQSubscriptionID = "QFS_testing";
->>>>>>> a56d177ae7807f81f085c72208927ef8825fafef
 
 		private EasyNetQReceiver(QueueConfig cfg)
 		{
