@@ -60,7 +60,7 @@ namespace QFC.TestProject
 		[TestMethod]
 		public void SendMessagesViaEasyNetQ()
 		{
-            const int messageCount = 10;
+            const int messageCount = 1000;
             var timer = new Stopwatch();
 
 		    using (var publisher = EasyNetQPublisher.GetInstance(_config))
@@ -102,7 +102,7 @@ namespace QFC.TestProject
 	    [TestMethod]
 	    public void SendMessagesViaMassTransit()
 	    {
-            const int messageCount = 100;
+            const int messageCount = 1000;
             var timer = new Stopwatch();
 
             using (var subscriber = MassTransitMessageReciever.GetInstance(_configMassTransit))
@@ -142,7 +142,7 @@ namespace QFC.TestProject
         [TestMethod]
         public void SendMessagesViaServiceStack()
         {
-            const int messageCount = 100;
+            const int messageCount = 1000;
             var timer = new Stopwatch();
 
             using (var publisher = ServiceStackMessagePublisher.GetInstance(_configServiceStack))
