@@ -40,7 +40,15 @@ namespace TestConsoleApplication
 
 		private static void StartPublish()
 		{
-			using (var publisher = ServiceStackMessagePublisher.GetInstance(new QueueConfig() {HostUrl = "localhost", LogFilePath = "D:\\Logs\\ServiceStackServiceStack\\temp.json"}))
+			//using (var publisher = ServiceStackMessagePublisher.GetInstance(new QueueConfig() {HostUrl = "localhost", LogFilePath = "D:\\Logs\\ServiceStackServiceStack\\temp.json"}))
+			//{
+
+			//	for (int i = 0; i < 100; i++)
+			//	{
+			//		publisher.Publish(_sentObject);
+			//	}
+			//}
+			using (var publisher = EasyNetQPublisher.GetInstance(new QueueConfig() { HostUrl = "Host=localhost", LogFilePath = "D:\\Logs\\ServiceStackServiceStack\\temp.json" }))
 			{
 
 				for (int i = 0; i < 100; i++)

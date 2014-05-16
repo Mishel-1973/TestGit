@@ -16,12 +16,42 @@ namespace TestReceiverApplication
 	{
 		static void Main(string[] args)
 		{
-			using (var receiver = ServiceStackMessageReciever.GetInstance(new QueueConfig()
-					{
-						HostUrl = "localhost",
-						SubscriberId = "console_app",
-						LogFilePath = "E:\\Logs"
-					}))
+			//using (var receiver = ServiceStackMessageReciever.GetInstance(new QueueConfig()
+			//		{
+			//			HostUrl = "localhost",
+			//			SubscriberId = "console_app",
+			//			LogFilePath = "E:\\Logs"
+			//		}))
+			//{
+			//	receiver.Subscribe();
+			//	int numReceivedMessages = 0;
+			//	PocoClass obj;
+			//	while (numReceivedMessages < 100)
+			//	{
+			//		if (receiver.ReceivedData.Count > 0)
+			//		{
+			//			if (receiver.ReceivedData.TryDequeue(out obj))
+			//			{
+			//				numReceivedMessages++;
+			//				Console.WriteLine("received " + numReceivedMessages.ToString() + " " + obj.Description);
+			//			}
+			//			else
+			//			{
+			//				Console.WriteLine("trydequeue failed");
+			//			}
+			//		}
+			//		else
+			//		{
+			//			//Thread.Sleep(100);
+			//		}
+			//	}
+			//}
+			using (var receiver = EasyNetQReceiver.GetInstance(new QueueConfig()
+			{
+				HostUrl = "Host=localhost",
+				SubscriberId = "console_app" + DateTime.Now.Millisecond.ToString(),
+				LogFilePath = "E:\\Logs"
+			}))
 			{
 				receiver.Subscribe();
 				int numReceivedMessages = 0;
