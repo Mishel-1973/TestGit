@@ -7,7 +7,7 @@ using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.EasyNetQ;
 using QFC.MassTransitTransport;
-//using QFC.RabbitMqClient;
+using QFC.RabbitMqClient;
 using QFC.ServiceStackTransport;
 
 namespace QFC.TestProject
@@ -68,7 +68,7 @@ namespace QFC.TestProject
 		[TestMethod]
 		public void SendMessagesViaEasyNetQ()
 		{
-            const int messageCount = 100000;
+            const int messageCount = 10000;
             var timer = new Stopwatch();
 
 		    using (var publisher = EasyNetQPublisher.GetInstance(_config))
@@ -110,7 +110,7 @@ namespace QFC.TestProject
 	    [TestMethod]
 	    public void SendMessagesViaMassTransit()
 	    {
-            const int messageCount = 10000;
+            const int messageCount = 100000;
             var timer = new Stopwatch();
 
             using (var subscriber = MassTransitMessageReciever.GetInstance(_configMassTransit))
@@ -150,7 +150,7 @@ namespace QFC.TestProject
         [TestMethod]
         public void SendMessagesViaServiceStack()
         {
-            const int messageCount = 1000;
+            const int messageCount = 100000;
             var timer = new Stopwatch();
 
             using (var publisher = ServiceStackMessagePublisher.GetInstance(_configServiceStack))
@@ -189,7 +189,7 @@ namespace QFC.TestProject
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void SendMessagesViaRabbitMq()
         {
             const int messageCount = 100000;
@@ -229,6 +229,6 @@ namespace QFC.TestProject
                 Debug.Write(string.Format("Elapsed time {0} messages recived: {1} ms", messageCount, timer.ElapsedMilliseconds));
                 timer.Reset();
             }
-        }*/
+        }
 	}
 }
