@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.Contracts.Interfaces;
@@ -17,7 +14,7 @@ using RabbitMQ.Client.Events;
 
 namespace QFC.RabbitMqClient
 {
-	public class RabbitMQReceiver : IQueueReceiver<PocoClass>, IDisposable
+	public class RabbitMqReceiver : IQueueReceiver<PocoClass>, IDisposable
 	{
 		private const int DataReadyTimeout = 10;
 		private readonly ILoger<PocoClass> _loger;
@@ -26,11 +23,11 @@ namespace QFC.RabbitMqClient
 		private readonly IModel _channel;
 		private QueueingBasicConsumer _consumer;
 		private readonly Thread _listenerThread;
-		private static RabbitMQReceiver _instance;
+		private static RabbitMqReceiver _instance;
 		private bool _disconnect;
 		private readonly QueueConfig _config;
 
-		private RabbitMQReceiver(QueueConfig config)
+		private RabbitMqReceiver(QueueConfig config)
 		{
 			_config = config;
             var logConfig = new LogConfig
@@ -42,7 +39,7 @@ namespace QFC.RabbitMqClient
             _loger = new JsonLoger<PocoClass>(logConfig);
             _data = new ConcurrentQueue<PocoClass>();
 
-			var factory = new ConnectionFactory { HostName = config.HostUrl };
+			var factory = new ConnectionFactory{ HostName = config.HostUrl};
 			_connection = factory.CreateConnection();
 			_channel = _connection.CreateModel();
 			this._listenerThread = new Thread(this.ListenerThreadFunc)
@@ -53,16 +50,20 @@ namespace QFC.RabbitMqClient
 			_disconnect = false;
         }
 
-		public static RabbitMQReceiver GetInstance(QueueConfig config)
+		public static RabbitMqReceiver GetInstance(QueueConfig config)
         {
-			return _instance ?? (_instance = new RabbitMQReceiver(config));
+			return _instance ?? (_instance = new RabbitMqReceiver(config));
         }
 
 		public void Subscribe()
 		{
-			_channel.QueueDeclare(_config.SubscriberId, false, false, false, null);
+			_channel.ExchangeDeclare(_config.SubscriberId, "fanout");
+			var queueName = _channel.QueueDeclare();
+
+			_channel.QueueBind(queueName, _config.SubscriberId, string.Empty);
 			_consumer = new QueueingBasicConsumer(_channel);
-			_channel.BasicConsume(_config.SubscriberId, true, _consumer);
+			_channel.BasicConsume(queueName, true, _consumer);
+
 			this._listenerThread.Start();
 		}
 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6C0C895-46CD-43CD-849A-4CA26C273713}</ProjectGuid>
+    <ProjectGuid>{4554C622-662D-451D-B61C-49D3C6396B48}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QFC.RabbitMqClient</RootNamespace>

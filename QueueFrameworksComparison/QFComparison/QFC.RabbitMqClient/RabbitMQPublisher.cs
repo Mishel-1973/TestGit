@@ -21,9 +21,9 @@ namespace QFC.RabbitMqClient
 			_serializer = new JSonSerializer<PocoClass>();
 			_config = config;
 			var factory = new ConnectionFactory { HostName = _config.HostUrl };
-			_connection = factory.CreateConnection();
+			_connection = factory.CreateConnection(2);
 			_channel = _connection.CreateModel();
-			_channel.QueueDeclare(_config.SubscriberId, false, false, false, null);
+			_channel.ExchangeDeclare(_config.SubscriberId, "fanout");
         }
 
         public static RabbitMqPublisher GetInstance(QueueConfig config)
@@ -33,7 +33,7 @@ namespace QFC.RabbitMqClient
 
 		public void Publish(PocoClass message)
 		{
-			_channel.BasicPublish(string.Empty, _config.SubscriberId, null, Encoding.UTF8.GetBytes(_serializer.Serialize(message)));
+			_channel.BasicPublish(_config.SubscriberId, string.Empty, null, Encoding.UTF8.GetBytes(_serializer.Serialize(message)));
 		}
 
 		public void Dispose()

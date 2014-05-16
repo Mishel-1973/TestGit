@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestReceiverApplication", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPublisherApplication", "TestConsoleApplication\TestPublisherApplication.csproj", "{3DCD1393-7E97-41E8-9ED5-1967D34729C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.RabbitMqClient", "QFC.RabbitMqClient\QFC.RabbitMqClient.csproj", "{B6C0C895-46CD-43CD-849A-4CA26C273713}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFC.RabbitMqClient", "QFC.RabbitMqClient\QFC.RabbitMqClient.csproj", "{4554C622-662D-451D-B61C-49D3C6396B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +57,10 @@ Global
 		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DCD1393-7E97-41E8-9ED5-1967D34729C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6C0C895-46CD-43CD-849A-4CA26C273713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6C0C895-46CD-43CD-849A-4CA26C273713}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6C0C895-46CD-43CD-849A-4CA26C273713}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6C0C895-46CD-43CD-849A-4CA26C273713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4554C622-662D-451D-B61C-49D3C6396B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4554C622-662D-451D-B61C-49D3C6396B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4554C622-662D-451D-B61C-49D3C6396B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4554C622-662D-451D-B61C-49D3C6396B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
