@@ -61,6 +61,10 @@
       <Project>{bde819c2-22a9-43ef-9820-a917042f6f06}</Project>
       <Name>QFC.EasyNetQ</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QFC.RabbitMqClient\QFC.RabbitMqClient.csproj">
+      <Project>{4554c622-662d-451d-b61c-49d3c6396b48}</Project>
+      <Name>QFC.RabbitMqClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QFC.ServiceStackTransport\QFC.ServiceStackTransport.csproj">
       <Project>{92BD816F-27BD-419A-9EC6-421661307607}</Project>
       <Name>QFC.ServiceStackTransport</Name>

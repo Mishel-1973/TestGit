@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.Contracts.Interfaces;
 using QFC.EasyNetQ;
+using QFC.RabbitMqClient;
 using QFC.ServiceStackTransport;
 
 namespace TestConsoleApplication
@@ -48,13 +50,24 @@ namespace TestConsoleApplication
 			//		publisher.Publish(_sentObject);
 			//	}
 			//}
-			using (var publisher = EasyNetQPublisher.GetInstance(new QueueConfig() { HostUrl = "Host=localhost", LogFilePath = "D:\\Logs\\ServiceStackServiceStack\\temp.json" }))
+			//using (var publisher = EasyNetQPublisher.GetInstance(new QueueConfig() { HostUrl = "Host=localhost", LogFilePath = "D:\\Logs\\ServiceStackServiceStack\\temp.json" }))
+			//{
+			//	for (int i = 0; i < 100; i++)
+			//	{
+			//		publisher.Publish(_sentObject);
+			//	}
+			//}
+			const int messageCount = 1000;
+			var timer = new Stopwatch();
+			using (var publisher = RabbitMqPublisher.GetInstance(new QueueConfig() { HostUrl = "localhost", LogFilePath = "D:\\Logs\\ServiceStackServiceStack\\temp.json", SubscriberId = "console_app17" }))
 			{
-
-				for (int i = 0; i < 100; i++)
+				timer.Start();
+				for (int i = 0; i < messageCount; i++)
 				{
 					publisher.Publish(_sentObject);
 				}
+				timer.Stop();
+				Debug.Write(string.Format("Elapsed time {0} message sent: {1} \n", messageCount, timer.ElapsedMilliseconds));
 			}
 		}
 
