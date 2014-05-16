@@ -7,6 +7,7 @@ using QFC.Contracts.Configuration;
 using QFC.Contracts.Data;
 using QFC.EasyNetQ;
 using QFC.MassTransitTransport;
+//using QFC.RabbitMqClient;
 using QFC.ServiceStackTransport;
 
 namespace QFC.TestProject
@@ -45,6 +46,13 @@ namespace QFC.TestProject
 			SubscriberId = "QFC_perfomance_tests"
 		};
 
+        private QueueConfig _configRabbitMq = new QueueConfig
+        {
+            HostUrl = "localhost",
+            LogFilePath = "D:\\Logs\\RabbitMQ\\temp.json",
+            SubscriberId = "QFC_perfomance_tests"
+        };
+
         private QueueConfig _configMassTransit = new QueueConfig
         {
             HostUrl = "rabbitmq://localhost/mybus",
@@ -60,7 +68,7 @@ namespace QFC.TestProject
 		[TestMethod]
 		public void SendMessagesViaEasyNetQ()
 		{
-            const int messageCount = 1000;
+            const int messageCount = 100000;
             var timer = new Stopwatch();
 
 		    using (var publisher = EasyNetQPublisher.GetInstance(_config))
@@ -102,7 +110,7 @@ namespace QFC.TestProject
 	    [TestMethod]
 	    public void SendMessagesViaMassTransit()
 	    {
-            const int messageCount = 1000;
+            const int messageCount = 10000;
             var timer = new Stopwatch();
 
             using (var subscriber = MassTransitMessageReciever.GetInstance(_configMassTransit))
@@ -180,5 +188,47 @@ namespace QFC.TestProject
                 timer.Reset();
             }
         }
+
+        /*[TestMethod]
+        public void SendMessagesViaRabbitMq()
+        {
+            const int messageCount = 100000;
+            var timer = new Stopwatch();
+
+            using (var publisher = RabbitMqPublisher.GetInstance(_configRabbitMq))
+            {
+                timer.Start();
+
+                for (int i = 0; i < messageCount; i++)
+                {
+                    publisher.Publish(_sentObject);
+                }
+
+                timer.Stop();
+                Debug.Write(string.Format("Elapsed time {0} message sent: {1} \n", messageCount, timer.ElapsedMilliseconds));
+                timer.Reset();
+            }
+
+            using (var subscriber = RabbitMQReceiver.GetInstance(_configRabbitMq))
+            {
+                timer.Start();
+                subscriber.Subscribe();
+                while (subscriber.ReceivedData.Count < messageCount)
+                {
+                }
+
+                var recievedData = new List<PocoClass>();
+                while (subscriber.ReceivedData.Count != 0)
+                {
+                    PocoClass tepmoraryObject;
+                    subscriber.ReceivedData.TryDequeue(out tepmoraryObject);
+                    recievedData.Add(tepmoraryObject);
+                }
+
+                timer.Stop();
+                Debug.Write(string.Format("Elapsed time {0} messages recived: {1} ms", messageCount, timer.ElapsedMilliseconds));
+                timer.Reset();
+            }
+        }*/
 	}
 }
