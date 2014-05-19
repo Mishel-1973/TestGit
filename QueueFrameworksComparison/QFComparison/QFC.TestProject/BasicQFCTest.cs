@@ -209,7 +209,7 @@ namespace QFC.TestProject
                 timer.Reset();
             }
 
-            using (var subscriber = RabbitMQReceiver.GetInstance(_configRabbitMq))
+            using (var subscriber = RabbitMqReceiver.GetInstance(_configRabbitMq))
             {
                 timer.Start();
                 subscriber.Subscribe();
